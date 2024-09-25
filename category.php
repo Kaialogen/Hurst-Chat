@@ -1,20 +1,11 @@
 <?php
 
-include 'connect.php';
-include 'header.php';
+include_once 'connect.php';
+include_once 'header.php';
 
-$sql = "SELECT
-            cat_id,
-            cat_name,
-            cat_description
-        FROM
-            categories
-        WHERE cat_id =
-        " . $_GET['id']
-;
+$sql_categories = "SELECT cat_id, cat_name, cat_description FROM categories WHERE cat_id = " . $_GET['id'];
 
- 
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($conn, $sql_categories);
  
 if(!$result)
 {
@@ -34,20 +25,9 @@ else
             echo '<h2>Topics in ' . $row['cat_name'] . '</h2>';
         }
      
-        
-        $sql = "SELECT  
-                    topic_id,
-                    topic_subject,
-                    topic_date,
-                    topic_cat
-                FROM
-                    topics
-                WHERE
-                    topic_cat = 
-                " . $_GET['id']
-;
+        $sql_topics = "SELECT topic_id, topic_subject, topic_date, topic_cat FROM topics WHERE topic_cat = " . $_GET['id'];
          
-        $result = mysqli_query($conn, $sql);
+        $result = mysqli_query($conn, $sql_topics);
          
         if(!$result)
         {
@@ -66,10 +46,10 @@ else
                       <tr>
                         <th style="background-color: #000;">Topic</th>
                         <th style="background-color: #000;">Created at</th>
-                      </tr>'; 
+                      </tr>';
                      
                 while($row = mysqli_fetch_assoc($result))
-                {               
+                {
                     echo '<tr>';
                         echo '<td class="leftpart">';
                             echo '<h3><a href="topic.php?id=' . $row['topic_id'] . '">' . $row['topic_subject'] . '</a><h3>';
@@ -84,5 +64,5 @@ else
     }
 }
  
-include 'footer.php';
+include_once 'footer.php';
 ?>

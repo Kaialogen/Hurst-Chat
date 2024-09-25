@@ -1,17 +1,14 @@
-body
-{
-  background-color: grey;
+body {
+  background-color: rgb(128, 128, 128);
   text-align: center;
 }
 
-#wrapper
-{
+#wrapper {
   width: 900px;
   margin: 0 auto;
 }
 
-#content
-{
+#content {
   background-color: #ff0000;
   border: 1px solid #000;
   float: left;
@@ -21,8 +18,7 @@ body
   width: 900px;
 }
 
-#menu
-{
+#menu {
   float: left;
   border: 1px solid #ff0000;
   border-bottom: none;
@@ -35,70 +31,63 @@ body
   font-size: 85%;
 }
 
-#menu a:hover
-{
+#menu a:hover {
   background-color: #009FC1;
 }
 
-#userbar
-{
+#userbar {
   background-color: #ffffff;
   float: right;
   width: 300px;
   font-family: sans-serif;
 }
 
-#footer
-{
+#footer {
   clear: both;
+  font-size: 65%;
+  padding: 3px 0 0 0;
 }
 
-table
-{
+table {
   border-collapse: collapse;
   width: 100%;
   background-color: white;
 }
 
-table a
-{
+table a {
   color: #000;
 }
 
-table a:hover
-{
+table a:hover {
   color: #373737;
   text-decoration: none;
 }
 
-th
-{
+th {
   background-color: white;
   color: white;
 }
 
-tr { background-color: yellow; }
+tr { 
+  background-color: yellow; 
+}
 
-td
-{
+td {
   padding: 0px;
   background-color: white;
 }
 
-h1, #footer
-{
+h1 {
   font-family: Arial, sans-serif;
   color: #000000;
 }
 
-h3
-{
+h3 {
   margin: 0;
   padding: 0;
 }
 
-.item
-{
+.item {
   background-color: #ffffff;
   border: 1px solid #000000;
   color: #000000;
@@ -107,30 +96,20 @@ h3
   text-decoration: none;
 }
 
-.leftpart
-{
+.leftpart {
   width: 70%
 }
 
-.rightpart
-{
+.rightpart {
   width: 30%;
 }
 
-.small
-{
+.small {
   font-size: 75%;
   padding: 3px 0 0 0;
 }
 
-#footer
-{
-  font-size: 65%;
-  padding: 3px 0 0 0;
-}
-
-.topic-post
-{
+.topic-post {
   height: 100px;
   overflow: auto;
 }
@@ -139,20 +118,12 @@ h3
   padding: 30px;
 }
 
-textarea
-{
+textarea {
   width: 500px;
   height: 200px;
 }
 
-li
-{
+li {
   margin: 10px 0;
   list-style-type: none;
 }
-
-img
-{
-   opacity: 0;
-}
-

@@ -5,8 +5,6 @@ include 'header.php';
 
 echo '<center><h3>Sign up</h3></center>';
 
-$conn = mysqli_connect("fdb27.runhosting.com", "3578976_forum", "Dovahkiin1", "3578976_forum");
-
 
 if($_SERVER['REQUEST_METHOD'] != 'POST')
 {

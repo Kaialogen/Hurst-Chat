@@ -3,8 +3,6 @@
 include 'connect.php';
 include 'header.php';
 
-$conn = mysqli_connect("fdb27.runhosting.com", "3578976_forum", "Dovahkiin1", "3578976_forum");
-
 if($_SERVER['REQUEST_METHOD'] != 'POST')
 {
 	

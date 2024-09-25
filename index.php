@@ -1,8 +1,6 @@
 <?php
-include 'connect.php';
-include 'header.php';
-
-$conn = mysqli_connect("fdb27.runhosting.com", "3578976_forum", "Dovahkiin1", "3578976_forum");
+include_once 'connect.php';
+include_once 'header.php';
 
 $sql = ("SELECT cat_id, cat_name, cat_description FROM categories");
 
@@ -41,5 +39,5 @@ else
     }
 }
 
-include 'footer.php';
+include_once 'footer.php';
 ?>

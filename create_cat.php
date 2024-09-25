@@ -2,8 +2,6 @@
 include 'connect.php';
 include 'header.php';
 
-$conn = mysqli_connect("fdb27.runhosting.com", "3578976_forum", "Dovahkiin1", "3578976_forum");
-
 echo '<h2>Create a category</h2>';
 
 if($_SESSION['signed_in'] == false)

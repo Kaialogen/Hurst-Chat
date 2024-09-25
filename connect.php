@@ -1,15 +1,23 @@
 <?php
+// Database connection parameters
+$host = 'db';            // MySQL container service name (from docker-compose.yml)
+$user = 'user';          // MySQL user (set in MYSQL_USER)
+$password = 'userpassword';  // MySQL password (set in MYSQL_PASSWORD)
+$database = 'mydatabase';    // Database name (set in MYSQL_DATABASE)
+$port = 3306;            // MySQL default port
 
-$user = '3578976_forum';
-$password = 'Dovahkiin1';
-$database = '3578976_forum';
-$host = 'fdb27.runhosting.com';
-$port = 3306;
+// Create the connection
+$conn = mysqli_connect($host, $user, $password, $database, $port);
 
-$conn = mysqli_connect($host, $user, $password) or die("cannot connect");
+// Check the connection
+if (!$conn) {
+    // Display a generic error message (don't expose details in production)
+    die('Connection failed: ' . mysqli_connect_error());
+}
 
-if(!mysqli_select_db($conn, $database))
-{
-  exit('Error: could not select the database');
+// Selecting the database (this step is redundant, mysqli_connect already selects the database)
+if (!mysqli_select_db($conn, $database)) {
+    // Error handling if the database cannot be selected
+    exit('Error: Could not select the database');
 }
 ?>

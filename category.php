@@ -3,15 +3,13 @@
 include 'connect.php';
 include 'header.php';
 
-$conn = mysqli_connect("fdb27.runhosting.com", "3578976_forum", "Dovahkiin1", "3578976_forum");
-
 $sql = "SELECT
             cat_id,
             cat_name,
             cat_description
         FROM
             categories
-        WHERE cat_id = 
+        WHERE cat_id =
         " . $_GET['id']
 ;
 

@@ -31,8 +31,8 @@
                 else {
                     echo '<table border="1">
                         <tr>
-                            <th style="background-color: #000;">Topic</th>
-                            <th style="background-color: #000;">Created at</th>
+                            <th class="table_header">Topic</th>
+                            <th class="table_header">Created at</th>
                         </tr>';
                      
                     while($row = mysqli_fetch_assoc($result)) {

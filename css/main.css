@@ -11,6 +11,7 @@ body {
 #content {
   background-color: #ff0000;
   border: 1px solid #000;
+  border-radius: 20px;
   float: left;
   font-family: sans-serif;
   padding: 20px 30px;
@@ -26,14 +27,6 @@ h1 {
 h3 {
   margin: 0;
   padding: 0;
-}
-
-.leftpart {
-  width: 70%
-}
-
-.rightpart {
-  width: 30%;
 }
 
 .small {

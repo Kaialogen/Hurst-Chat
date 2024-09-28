@@ -15,12 +15,12 @@
         else {
             echo '<table border="1">
                 <tr>
-                    <th style="background-color: #000;">Category</th>
-                    <th style="background-color: #000;">Last topic</th>
+                    <th class="table_header">Category</th>
+                    <th class="table_header">Recent topic</th>
                 </tr>';
 
             while($row = mysqli_fetch_assoc($result)) {
-                echo '<tr style="background-color: white;">';
+                echo '<tr>';
                     echo '<td class="leftpart">';
                         echo '<h3><a href="category.php?id=' . $row['cat_id'] . '">' . $row['cat_name'] . '</a></h3>' . $row['cat_description'];
                     echo '</td>';

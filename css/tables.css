@@ -13,16 +13,22 @@ table a:hover {
     text-decoration: none;
 }
   
-th {
-    background-color: white;
-    color: white;
-}
-  
-tr { 
-    background-color: yellow; 
-}
-  
 td {
-    padding: 0px;
+    padding: 5px;
     background-color: white;
+}
+
+.leftpart {
+    width: 70%;
+}
+  
+.rightpart {
+    width: 30%;
+}
+
+.table_header {
+    background-color: #000;
+    color: white;
+    text-align: center;
+    padding: 5px;
 }

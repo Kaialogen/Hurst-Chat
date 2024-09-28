@@ -1,0 +1,28 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+}
+  
+table a {
+    color: #000;
+}
+  
+table a:hover {
+    color: #373737;
+    text-decoration: none;
+}
+  
+th {
+    background-color: white;
+    color: white;
+}
+  
+tr { 
+    background-color: yellow; 
+}
+  
+td {
+    padding: 0px;
+    background-color: white;
+}

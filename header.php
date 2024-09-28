@@ -11,6 +11,7 @@ session_start();
       <link rel="icon" href="/assets/logo.png" type="image/x-icon">
       <link href="/css/main.css" rel="stylesheet" type="text/css">
       <link href="/css/navbar.css" rel="stylesheet" type="text/css">
+      <link href="/css/tables.css" rel="stylesheet" type="text/css">
     </head>
 
     <body>

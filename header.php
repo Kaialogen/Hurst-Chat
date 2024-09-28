@@ -17,14 +17,15 @@ session_start();
       <div class="navbar">
         <a id="navbar_home" href="index.php">Hurst Chat</a>
         <a href="create_topic.php">Create topic</a>
-        <a href="create_cat.php">Create a category</a>
+        <a href="create_cat.php">Create category</a>
 
         <div id="userbar">
           <?php if (isset($_SESSION['signed_in'])): ?>
             <a href="#"><?= htmlspecialchars($_SESSION['user_name']); ?></a> 
             <a href="signout.php">Sign out</a>
-            <?php else : ?>
-              <a href="signin.php">Login</a><a href="signup.php">Register</a>
+            <?php else: ?>
+              <a href="signin.php">Login</a>
+              <a href="signup.php">Register</a>
           <?php endif; ?>
         </div>
       </div>

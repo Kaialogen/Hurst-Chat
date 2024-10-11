@@ -2,11 +2,11 @@ table {
     border: 1px solid black;
     border-collapse: collapse;
     width: 100%;
-    background-color: white;
+    background-color: #f5f5ff;
 }
   
 table a {
-    color: #000;
+    color: #010110;
 }
   
 table a:hover {
@@ -16,7 +16,7 @@ table a:hover {
   
 td {
     padding: 5px;
-    background-color: white;
+    background-color: #f5f5ff;
     border-color: black;
 }
 
@@ -29,8 +29,8 @@ td {
 }
 
 th {
-    background-color: #000;
-    color: white;
+    background-color: #ee6cfa;
+    color: #010110;
     text-align: center;
     padding: 5px;
 }

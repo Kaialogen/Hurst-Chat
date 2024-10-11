@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(128, 128, 128);
+  background-color: #f5f5ff;
   text-align: center;
 }
 
@@ -9,8 +9,7 @@ body {
 }
 
 #content {
-  background-color: #ff0000;
-  border: 1px solid #000;
+  background-color: #2215f7;
   border-radius: 20px;
   float: left;
   font-family: sans-serif;
@@ -21,7 +20,7 @@ body {
 
 h1 {
   font-family: Arial, sans-serif;
-  color: #000000;
+  color: #010110;
 }
 
 h3 {

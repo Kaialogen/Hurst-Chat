@@ -17,3 +17,9 @@
 - Primary: #1408e7
 - Secondary: #880594
 - Accent: #b1067b
+
+# Tech Stack
+- Database: MySQL
+- Frontend: Vanilla CSS, PHP
+- Backend: Apache Web Server
+- Misc: Docker

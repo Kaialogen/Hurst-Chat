@@ -1,5 +1,6 @@
 # Hurst Chat A-Level Project
 
+- To deploy: `docker compose up --build`
 
 ## Hurst Chat colour scheme
 - https://www.realtimecolors.com/?colors=010110-f5f5ff-2215f7-ee6cfa-f94dc3&fonts=Inter-Inter

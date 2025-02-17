@@ -86,6 +86,25 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
+app.get("/api/profile", (req, res) => {
+  const token = req.cookies.authToken;
+
+  if (!token) return res.status(401).json({ message: "Not authenticated" });
+
+  try {
+    const decoded = jwt.verify(token, SECRET_KEY);
+    res.json({ username: decoded.username });
+  } catch (err) {
+    res.status(401).json({ message: "Invalid or expired token" });
+  }
+});
+
+app.post("/api/logout", (req, res) => {
+  res.clearCookie("authToken", { httpOnly: true, secure: true, sameSite: "Strict" });
+  res.json({ message: "Logged out" });
+});
+
+
 // Serve the main HTML file
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));

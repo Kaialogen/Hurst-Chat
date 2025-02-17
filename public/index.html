@@ -17,8 +17,6 @@
       <a href="create_cat.html">Create category</a>
 
       <div id="userbar">
-        <a href="#">Username</a>
-        <a href="signout.html">Sign out</a>
         <a href="signin.html">Login</a>
         <a href="signup.html">Register</a>
       </div>
@@ -40,5 +38,12 @@
         </table>
       </div>
     </div>
+    <script src="./js/ProfileValidation.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        getProfile(); // Run profile validation when page loads
+      });
+    </script>
+    
   </body>
 </html>

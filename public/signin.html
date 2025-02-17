@@ -1,47 +1,59 @@
-<!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta charset="UTF-8">
-      <title>Hurst Chat</title>
-      <link rel="icon" href="./assets/logo.png" type="image/x-icon">
-      <link href="./css/main.css" rel="stylesheet" type="text/css">
-      <link href="./css/navbar.css" rel="stylesheet" type="text/css">
-      <link href="./css/tables.css" rel="stylesheet" type="text/css">
-    </head>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>Hurst Chat</title>
+    <link rel="icon" href="./assets/logo.png" type="image/x-icon" />
+    <link href="./css/main.css" rel="stylesheet" type="text/css" />
+    <link href="./css/navbar.css" rel="stylesheet" type="text/css" />
+    <link href="./css/tables.css" rel="stylesheet" type="text/css" />
+  </head>
 
-    <body>
-      <div class="navbar">
-        <a id="navbar_home" href="index.html">Hurst Chat</a>
-        <a href="create_topic.hml">Create topic</a>
-        <a href="create_cat.html">Create category</a>
+  <body>
+    <div class="navbar">
+      <a id="navbar_home" href="index.html">Hurst Chat</a>
+      <a href="create_topic.hml">Create topic</a>
+      <a href="create_cat.html">Create category</a>
 
-        <div id="userbar">
-            <a href="#">Username</a> 
-            <a href="signout.html">Sign out</a>
-              <a href="signin.html">Login</a>
-              <a href="signup.html">Register</a>
-        </div>
+      <div id="userbar">
+        <a href="#">Username</a>
+        <a href="signout.html">Sign out</a>
+        <a href="signin.html">Login</a>
+        <a href="signup.html">Register</a>
       </div>
+    </div>
 
-      <img src="/assets/logo.png" alt="Main Logo">
-      <div id="wrapper">
-        <div id="content">
+    <img src="/assets/logo.png" alt="Main Logo" />
+    <div id="wrapper">
+      <div id="content">
+        <h3>Sign in</h3>
 
-            <h3>Sign in</h3>
+        <p>
+          You are already signed in, you can
+          <a href="signout.html">sign out</a> if you want.
+        </p>
 
-            <p>You are already signed in, you can <a href="signout.html">sign out</a> if you want.</p>
+        <form
+          name="Login"
+          method="post"
+          onsubmit="return login(event)"
+          required
+        >
+          <label>Username:</label>
+          <input type="text" name="username" placeholder="username" required />
 
-            <form name="Login" method="post" onsubmit="return login(event)" required>
-                <label>Username:</label>  
-                <input type="text" name="username" placeholder="username" required />
-
-                <label>Password:</label>
-                <input type="password" name="password" placeholder="password" required />
-                <input type="submit" value="Submit" />
-            </form>
-        </div>
-      </div>  
-    </body>
-    <script src="./js/LoginValidation.js"></script>
+          <label>Password:</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            required
+          />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    </div>
+  </body>
+  <script src="./js/LoginValidation.js"></script>
 </html>

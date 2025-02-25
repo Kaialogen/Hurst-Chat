@@ -5,6 +5,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
 const mysql = require("mysql2/promise");
+const graphqlHandler = require("./graphql");
 
 const dbConfig = {
   host: "db",
@@ -31,6 +32,9 @@ const SECRET_KEY = process.env.JWT_SECRET || "your-secret-key";
 
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, "public")));
+
+// Posts API
+app.all("/graphql", graphqlHandler);
 
 // Login Route
 app.post("/api/login", async (req, res) => {

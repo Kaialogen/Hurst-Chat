@@ -5,14 +5,14 @@ async function signup(event) {
     const username = formData.get("username");
     const email = formData.get("email");
     const password1 = formData.get("password1");
-    const password2 = formData.get("password2");
+    const password = formData.get("password2");
 
     try {
         const response = await fetch("api/signup", {
             method: "POST",
             credentials: "include",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, email, password2}),
+            body: JSON.stringify({ username, email, password}),
         });
 
         const data = await response.json();

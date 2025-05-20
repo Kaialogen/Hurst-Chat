@@ -12,14 +12,21 @@ const dbConfig = {
 
 // Define GraphQL schema
 const schema = buildSchema(`
+  type Topic {
+    topic_id: ID
+    topic_subject: String
+  }
+
   type Category {
     id: ID
     name: String
     description: String
+    topics: [Topic]
   }
 
   type Query {
     categories: [Category]
+    topics: [Topic]
   }
 `);
 
@@ -28,12 +35,28 @@ const root = {
   categories: async () => {
     try {
       const connection = await mysql.createConnection(dbConfig);
-      const [rows] = await connection.execute("SELECT id, name, description FROM categories");
+
+      // Get categories
+      const [categories] = await connection.execute("SELECT id, name, description FROM categories");
+
+      // Get topics
+      const [topics] = await connection.execute("SELECT topic_id, topic_subject, topic_cat FROM topics");
+
+      // Map topics to categories
+      const categoriesWithTopics = categories.map((category) => {
+        const relatedTopics = topics.filter((topic) => topic.topic_cat === category.id);
+        return {
+          ...category,
+          topics: relatedTopics,
+        };
+      });
+
       await connection.end();
-      return rows;
+      return categoriesWithTopics;
+
     } catch (error) {
       console.error("Database error:", error);
-      throw new Error("Failed to fetch categories");
+      throw new Error("Failed to fetch categories with topics");
     }
   },
 };

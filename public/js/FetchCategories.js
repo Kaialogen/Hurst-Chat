@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        query: "{ categories { id name description } }",
+        query: `{ categories {id name description topics { topic_id topic_subject}}}`,
       }),
     });
 
@@ -18,10 +18,16 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     data.categories.forEach((category) => {
       const row = document.createElement("tr");
+
+      let topicContent = "No topics yet";
+      if (category.topics && category.topics.length > 0) {
+        topicContent = category.topics.map(topic => topic.topic_subject).join(", ");
+      }
+
       row.innerHTML = `
         <td>${category.name}</td>
-        <td>No topics yet</td>
-      `;
+        <td>${topicContent}</td>
+        `;
       tbody.appendChild(row);
     });
   } catch (error) {

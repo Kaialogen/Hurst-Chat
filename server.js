@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
 const mysql = require("mysql2/promise");
 const graphqlHandler = require("./graphql");
+const categories = require("./db/categories");
 
 const dbConfig = {
   host: "db",
@@ -95,35 +96,40 @@ app.post("/api/signup", async (req, res) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
-      return res.status(400).json({ message: "Missing required fields" });
+    return res.status(400).json({ message: "Missing required fields" });
   }
 
   try {
-      const connection = await mysql.createConnection(dbConfig);
+    const connection = await mysql.createConnection(dbConfig);
 
-      // Check if username or email already exists
-      const [existingUsers] = await connection.execute(
-          "SELECT user_name, user_email FROM users WHERE user_name = ? OR user_email = ?",
-          [username, email]
-      );
-      
-      if (existingUsers.length > 0) {
-          return res.status(409).json({ message: "Username or email already exists" });
-      }
+    // Check if username or email already exists
+    const [existingUsers] = await connection.execute(
+      "SELECT user_name, user_email FROM users WHERE user_name = ? OR user_email = ?",
+      [username, email],
+    );
 
-      // Hash password using SHA-1 (temporary, will be replaced with bcrypt later)
-      const hashedPassword = crypto.createHash("sha1").update(password).digest("hex");
+    if (existingUsers.length > 0) {
+      return res
+        .status(409)
+        .json({ message: "Username or email already exists" });
+    }
 
-      // Insert new user into database
-      await connection.execute(
-          "INSERT INTO users (user_name, user_pass, user_email, user_date, user_level) VALUES (?, ?, ?, NOW(), 0)",
-          [username, hashedPassword, email]
-      );
+    // Hash password using SHA-1 (temporary, will be replaced with bcrypt later)
+    const hashedPassword = crypto
+      .createHash("sha1")
+      .update(password)
+      .digest("hex");
 
-      res.status(201).json({ message: "Signup successful!" });
+    // Insert new user into database
+    await connection.execute(
+      "INSERT INTO users (user_name, user_pass, user_email, user_date, user_level) VALUES (?, ?, ?, NOW(), 0)",
+      [username, hashedPassword, email],
+    );
+
+    res.status(201).json({ message: "Signup successful!" });
   } catch (error) {
-      console.error("Signup error:", error);
-      res.status(500).json({ message: "Server error" });
+    console.error("Signup error:", error);
+    res.status(500).json({ message: "Server error" });
   }
 });
 
@@ -141,10 +147,20 @@ app.get("/api/profile", (req, res) => {
 });
 
 app.post("/api/logout", (req, res) => {
-  res.clearCookie("authToken", { httpOnly: true, secure: true, sameSite: "Strict" });
+  res.clearCookie("authToken", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "Strict",
+  });
   res.json({ message: "Logged out" });
 });
 
+app.get("/api/categories", (req, res) => {
+  if (!categories || categories.length === 0) {
+    return res.status(404).json({ message: "No categories found" });
+  }
+  res.json(categories);
+});
 
 // Serve the main HTML file
 app.get("*", (req, res) => {

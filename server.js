@@ -7,6 +7,7 @@ const crypto = require("crypto");
 const mysql = require("mysql2/promise");
 const graphqlHandler = require("./graphql");
 const categories = require("./db/categories");
+const topics = require("./db/topics");
 
 const dbConfig = {
   host: "db",
@@ -187,6 +188,20 @@ app.post("/api/categories", async (req, res) => {
     topics: [],
   });
   res.status(201).json({ message: "Category added successfully", categories });
+});
+
+// Get a specific topic by category ID
+app.get("/api/categories/:id", (req, res) => {
+  const categoryId = parseInt(req.params.id, 10);
+  const category = categories.find((cat) => cat.id === categoryId);
+
+  if (!category) {
+    return res.status(404).json({ message: "Category not found" });
+  }
+
+  // Add topics to the category
+  category.topics = topics.filter((topic) => topic.category_id === categoryId);
+  res.json(category);
 });
 
 // Serve the main HTML file

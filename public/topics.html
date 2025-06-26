@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>Hurst Chat</title>
+    <link rel="icon" href="./assets/logo.png" type="image/x-icon" />
+    <link href="./css/main.css" rel="stylesheet" type="text/css" />
+    <link href="./css/navbar.css" rel="stylesheet" type="text/css" />
+    <link href="./css/tables.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div class="navbar">
+      <a id="navbar_home" href="index.html">Hurst Chat</a>
+      <a href="create_topic.hml">Create topic</a>
+      <a href="create_category.html">Create category</a>
+
+      <div id="userbar">
+        <a href="signin.html">Login</a>
+        <a href="signup.html">Register</a>
+      </div>
+    </div>
+
+    <img src="/assets/logo.png" alt="Main Logo" />
+    <div id="wrapper">
+      <div id="content">
+        <h2 id="category_name" style="color: aliceblue">Topics in</h2>
+        <table>
+          <tr>
+            <th class="table_header">Topic</th>
+            <th class="table_header">Created At</th>
+          </tr>
+          <tr>
+            <td class="leftpart">
+              <h3 id="topic_name"><a href="#">Topic Name</a></h3>
+            </td>
+            <td class="rightpart">2023-10-01 12:00:00</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+      try {
+        // Get the category id from the URL query string
+        const params = new URLSearchParams(window.location.search);
+        const categoryId = params.get("id") || 1;
+        const response = await fetch(`/api/categories/${categoryId}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        } else {
+          const data = await response.json();
+          const table = document.querySelector("table");
+          const categoryName = document.getElementById("category_name");
+          categoryName.textContent = `Topics in ${data.name}`;
+          // Remove existing topic rows except the header
+          while (table.rows.length > 1) {
+            table.deleteRow(1);
+          }
+          data.topics.forEach((topic) => {
+            const row = table.insertRow();
+            const cellTopic = row.insertCell();
+            cellTopic.className = "leftpart";
+            cellTopic.innerHTML = `<h3><a href="topics.html?id=${topic.id}">${topic.topic_content}</a></h3>`;
+            const cellCreated = row.insertCell();
+            cellCreated.className = "rightpart";
+            cellCreated.textContent = new Date(
+              topic.created_at,
+            ).toLocaleString();
+          });
+        }
+      } catch (error) {
+        console.error("There was a problem with the fetch operation:", error);
+      }
+    });
+  </script>
+</html>

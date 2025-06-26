@@ -1,7 +1,22 @@
-FROM php:7.4-apache
+# syntax=docker/dockerfile:1
 
-COPY . /var/www/html
+ARG NODE_VERSION=20.11.0
 
-RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" && docker-php-ext-install mysqli
+FROM node:${NODE_VERSION}-alpine
 
-USER www-data
+ENV NODE_ENV production
+
+WORKDIR /usr/src/app
+
+RUN --mount=type=bind,source=package.json,target=package.json \
+    --mount=type=bind,source=package-lock.json,target=package-lock.json \
+    --mount=type=cache,target=/root/.npm \
+    npm ci --omit=dev
+
+USER node
+
+COPY . .
+
+EXPOSE 3000
+
+CMD node server.js

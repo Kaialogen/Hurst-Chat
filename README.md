@@ -10,6 +10,7 @@ It is currently being refactored to React and Node.js, with a focus on improving
 
 
 # Tech Stack
+
 - Database: MySQL
 - Frontend: Vanilla CSS, PHP
 - Backend: Apache Web Server

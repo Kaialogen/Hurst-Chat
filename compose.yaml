@@ -1,10 +1,14 @@
-
 services:
   server:
     build:
       context: .
+    environment:
+      NODE_ENV: production
+    depends_on:
+      db:
+        condition: service_healthy
     ports:
-      - 9000:80
+      - "3000:3000"
 
   db:
     image: mysql:8.0
@@ -16,9 +20,24 @@ services:
       MYSQL_PASSWORD: userpassword
     volumes:
       - db_data:/var/lib/mysql
-      - ./your-app.sql:/docker-entrypoint-initdb.d/your-app.sql
+      - ./db/Hurst_Chat.sql:/docker-entrypoint-initdb.d/Hurst_Chat.sql
     ports:
       - "3306:3306"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-u",
+          "root",
+          "-prootpassword",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   db_data:

@@ -14,10 +14,10 @@
 -- Table structure for `categories`
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
-  `cat_id` int(8) NOT NULL AUTO_INCREMENT,
-  `cat_name` varchar(100) NOT NULL,
-  `cat_description` varchar(255) NOT NULL,
-  PRIMARY KEY (`cat_id`)
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- Inserting data for `categories`

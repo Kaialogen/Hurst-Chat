@@ -162,6 +162,33 @@ app.get("/api/categories", (req, res) => {
   res.json(categories);
 });
 
+// Add a new category
+app.post("/api/categories", async (req, res) => {
+  // Data looks like this:
+  // [ { "name": "New Category", "description": "Category description" } ]
+  let name, description;
+  if (Array.isArray(req.body) && req.body.length > 0) {
+    name = req.body[0].name;
+    description = req.body[0].description;
+  } else {
+    name = req.body.name;
+    description = req.body.description;
+  }
+
+  if (!name || !description) {
+    return res
+      .status(400)
+      .json({ message: "Name and description are required" });
+  }
+  categories.push({
+    id: categories.length + 1,
+    name,
+    description,
+    topics: [],
+  });
+  res.status(201).json({ message: "Category added successfully", categories });
+});
+
 // Serve the main HTML file
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));

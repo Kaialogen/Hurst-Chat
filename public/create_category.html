@@ -8,8 +8,8 @@
     <link href="./css/main.css" rel="stylesheet" type="text/css" />
     <link href="./css/navbar.css" rel="stylesheet" type="text/css" />
     <link href="./css/tables.css" rel="stylesheet" type="text/css" />
+    <link href="./css/create_category.css" rel="stylesheet" type="text/css" />
   </head>
-
   <body>
     <div class="navbar">
       <a id="navbar_home" href="index.html">Hurst Chat</a>
@@ -25,35 +25,40 @@
     <img src="/assets/logo.png" alt="Main Logo" />
     <div id="wrapper">
       <div id="content">
-        <h3>Sign in</h3>
-
-        <form
-          name="Login"
-          method="post"
-          onsubmit="return login(event)"
-          required
-        >
-          <label for="username">Username:</label>
+        <form id="create_category_form">
+          <h2 class="form_header">Create Category</h2>
+          <label for="category_name" class="form_labels">Category Name:</label>
           <input
             type="text"
-            id="username"
-            name="username"
-            placeholder="username"
+            id="category_name"
+            name="category_name"
             required
+            class="form_input"
           />
 
-          <label for="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="password"
+          <label for="category_description" class="form_labels"
+            >Description:</label
+          >
+          <textarea
+            id="category_description"
+            name="category_description"
             required
-          />
-          <input type="submit" value="Submit" />
+            class="form_textarea"
+          ></textarea>
+
+          <button type="submit" class="form_button">Create Category</button>
         </form>
       </div>
     </div>
   </body>
-  <script src="./js/LoginValidation.js"></script>
+  <script src="./js/ProfileValidation.js"></script>
+  <script src="./js/AddCategory.js"></script>
+  <script>
+    document
+      .getElementById("create_category_form")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+        AddCategory();
+      });
+  </script>
 </html>

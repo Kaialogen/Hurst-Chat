@@ -1,13 +1,12 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const path = require("path");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
 const mysql = require("mysql2/promise");
 const graphqlHandler = require("./graphql");
-const categories = require("./db/categories");
-const topics = require("./db/topics");
+const categories = require("../db/categories");
+const topics = require("../db/topics");
 
 const dbConfig = {
   host: "db",
@@ -31,9 +30,6 @@ app.use(
 
 // Secret key for JWT
 const SECRET_KEY = process.env.JWT_SECRET || "your-secret-key";
-
-// Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname, "public")));
 
 // Posts API
 app.all("/graphql", graphqlHandler);
@@ -202,11 +198,6 @@ app.get("/api/categories/:id", (req, res) => {
   // Add topics to the category
   category.topics = topics.filter((topic) => topic.category_id === categoryId);
   res.json(category);
-});
-
-// Serve the main HTML file
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 // Start the server

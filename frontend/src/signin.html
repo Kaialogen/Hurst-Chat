@@ -6,21 +6,42 @@
     <title>Hurst Chat</title>
     <link rel="icon" href="/logo.png" type="image/x-icon" />
     <link href="./css/main.css" rel="stylesheet" type="text/css" />
-    <link href="./css/navbar.css" rel="stylesheet" type="text/css" />
+    <link href="../style.css" rel="stylesheet" />
     <link href="./css/tables.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
-    <div class="navbar">
-      <a id="navbar_home" href="index.html">Hurst Chat</a>
-      <a href="create_topic.hml">Create topic</a>
-      <a href="create_category.html">Create category</a>
-
-      <div id="userbar">
-        <a href="signin.html">Login</a>
-        <a href="signup.html">Register</a>
+    <nav
+      class="bg-gray-900 text-white px-6 py-4 flex justify-between items-center shadow"
+    >
+      <div class="flex space-x-6 items-center">
+        <a
+          href="index.html"
+          class="font-bold text-lg hover:text-blue-400 transition"
+          >Hurst Chat</a
+        >
+        <a href="/src/create_topic.hml" class="hover:text-blue-400 transition"
+          >Create topic</a
+        >
+        <a
+          href="/src/create_category.html"
+          class="hover:text-blue-400 transition"
+          >Create category</a
+        >
       </div>
-    </div>
+      <div class="flex space-x-4 items-center">
+        <a
+          href="/src/signin.html"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition"
+          >Login</a
+        >
+        <a
+          href="/src/signup.html"
+          class="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded transition"
+          >Register</a
+        >
+      </div>
+    </nav>
 
     <img src="/logo.png" alt="Main Logo" />
     <div id="wrapper">

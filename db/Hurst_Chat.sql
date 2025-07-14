@@ -62,20 +62,20 @@ CREATE TABLE `replies` (
 DROP TABLE IF EXISTS `topics`;
 CREATE TABLE `topics` (
   `topic_id` int(8) NOT NULL AUTO_INCREMENT,
-  `topic_subject` varchar(255) NOT NULL,
-  `topic_date` datetime NOT NULL,
-  `topic_cat` int(8) NOT NULL,
-  `topic_by` int(8) NOT NULL,
+  `category_id` int(8) NOT NULL,
+  `topic_content` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `topic_author` int(8) NOT NULL,
   PRIMARY KEY (`topic_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- Inserting data for `topics`
 INSERT INTO `topics` VALUES
-(1, 'Latest in Tech News', '2023-09-15 10:20:10', 1, 2),
-(2, 'Healthy Habits for a Balanced Life', '2023-09-16 11:25:50', 2, 3),
-(3, 'Best Games of 2023', '2023-09-17 14:45:00', 3, 4),
-(4, 'Learning Programming', '2023-09-18 15:30:00', 4, 5),
-(5, 'Travel Destinations for 2024', '2023-09-19 16:00:00', 5, 6);
+(1, 1, 'Latest in Tech News', '2023-09-15 10:20:10', 2),
+(2, 2, 'Healthy Habits for a Balanced Life', '2023-09-16 11:25:50', 3),
+(3, 3, 'Best Games of 2023', '2023-09-17 14:45:00', 4),
+(4, 4, 'Learning Programming', '2023-09-18 15:30:00', 5),
+(5, 5, 'Travel Destinations for 2024', '2023-09-19 16:00:00', 6);
 
 -- Table structure for `users`
 DROP TABLE IF EXISTS `users`;

@@ -14,7 +14,7 @@
     <div class="navbar">
       <a id="navbar_home" href="index.html">Hurst Chat</a>
       <a href="create_topic.hml">Create topic</a>
-      <a href="create_cat.html">Create category</a>
+      <a href="create_category.html">Create category</a>
 
       <div id="userbar">
         <a href="signin.html">Login</a>
@@ -22,26 +22,38 @@
       </div>
     </div>
 
-    <img src="/assets/logo.png" alt="Main Logo" />
     <div id="wrapper">
       <div id="content">
-        <table>
-          <thead>
-            <tr>
-              <th>Category</th>
-              <th>Recent topic</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+        <center><h3>Sign up</h3></center>
+        <ul id="list">
+          <form
+            name="Signup"
+            method="post"
+            onsubmit="return signup(event)"
+            required
+          >
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required />
+            <label for="email">Email:</label>
+            <input id="email" type="email" name="email" required />
+            <label for="password1">Password:</label>
+            <input id="password1" type="password" name="password1" required />
+            <label for="password2">Please enter password again:</label>
+            <input id="passwoes2" type="password" name="password2" required />
+            <input type="submit" value="submit" />
+          </form>
+        </ul>
+
+        <center><a href="terms.html">Terms and Conditions</a></center>
       </div>
     </div>
+
     <script src="./js/ProfileValidation.js"></script>
-    <script src="./js/FetchCategories.js"></script>
+    <script src="./js/Signup.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         getProfile(); // Run profile validation when page loads
       });
-    </script> 
+    </script>
   </body>
 </html>

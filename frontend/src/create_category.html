@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>Hurst Chat</title>
+    <link rel="icon" href="/logo.png" type="image/x-icon" />
+    <link href="./css/main.css" rel="stylesheet" type="text/css" />
+    <link href="./css/navbar.css" rel="stylesheet" type="text/css" />
+    <link href="./css/tables.css" rel="stylesheet" type="text/css" />
+    <link href="./css/create_category.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="navbar">
+      <a id="navbar_home" href="/index.html">Hurst Chat</a>
+      <a href="create_topic.hml">Create topic</a>
+      <a href="create_category.html">Create category</a>
+
+      <div id="userbar">
+        <a href="signin.html">Login</a>
+        <a href="signup.html">Register</a>
+      </div>
+    </div>
+
+    <img src="/logo.png" alt="Main Logo" />
+    <div id="wrapper">
+      <div id="content">
+        <form id="create_category_form">
+          <h2 class="form_header">Create Category</h2>
+          <label for="category_name" class="form_labels">Category Name:</label>
+          <input
+            type="text"
+            id="category_name"
+            name="category_name"
+            required
+            class="form_input"
+          />
+
+          <label for="category_description" class="form_labels"
+            >Description:</label
+          >
+          <textarea
+            id="category_description"
+            name="category_description"
+            required
+            class="form_textarea"
+          ></textarea>
+
+          <button type="submit" class="form_button">Create Category</button>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script src="./js/ProfileValidation.js"></script>
+  <script src="./js/AddCategory.js"></script>
+  <script>
+    document
+      .getElementById("create_category_form")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+        AddCategory();
+      });
+  </script>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>Hurst Chat</title>
+    <link rel="icon" href="/logo.png" type="image/x-icon" />
+    <link href="/src/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="/src/css/navbar.css" rel="stylesheet" type="text/css" />
+    <link href="/src/css/tables.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div class="navbar">
+      <a id="navbar_home" href="index.html">Hurst Chat</a>
+      <a href="/src/create_topic.hml">Create topic</a>
+      <a href="/src/create_category.html">Create category</a>
+
+      <div id="userbar">
+        <a href="/src/signin.html">Login</a>
+        <a href="/src/signup.html">Register</a>
+      </div>
+    </div>
+
+    <img src="/logo.png" alt="Main Logo" />
+    <div id="wrapper">
+      <div id="content">
+        <h2 id="category_name" style="color: aliceblue">Homepage</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Recent topic</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <script src="./src/js/ProfileValidation.js"></script>
+    <script src="./src/js/FetchCategories.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        getProfile(); // Run profile validation when page loads
+      });
+    </script>
+  </body>
+</html>

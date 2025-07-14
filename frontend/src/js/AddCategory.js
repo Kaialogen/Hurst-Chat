@@ -7,7 +7,7 @@ const AddCategory = async () => {
     const description = document.querySelector("#category_description").value;
 
     try {
-      const response = await fetch("/api/categories", {
+      const response = await fetch("http://localhost:3000/api/categories", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, description }),

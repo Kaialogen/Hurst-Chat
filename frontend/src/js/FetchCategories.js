@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         row.innerHTML = `
         <td class="leftpart">
-          <h3><a href="topics.html?id=${category.id}">${category.name}</a></h3>
+          <h3><a href="/topics.html?id=${category.id}">${category.name}</a></h3>
           <p>${category.description}</p>
         </td>
         <td class="rightpart">${topicContent}</td>

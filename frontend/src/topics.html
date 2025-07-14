@@ -5,14 +5,14 @@
     <meta charset="UTF-8" />
     <title>Hurst Chat</title>
     <link rel="icon" href="/logo.png" type="image/x-icon" />
-    <link href="./css/main.css" rel="stylesheet" type="text/css" />
-    <link href="./css/navbar.css" rel="stylesheet" type="text/css" />
-    <link href="./css/tables.css" rel="stylesheet" type="text/css" />
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="/css/navbar.css" rel="stylesheet" type="text/css" />
+    <link href="/css/tables.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
     <div class="navbar">
-      <a id="navbar_home" href="../index.html">Hurst Chat</a>
+      <a id="navbar_home" href="/index.html">Hurst Chat</a>
       <a href="create_topic.hml">Create topic</a>
       <a href="create_category.html">Create category</a>
 
@@ -47,12 +47,15 @@
         // Get the category id from the URL query string
         const params = new URLSearchParams(window.location.search);
         const categoryId = params.get("id") || 1;
-        const response = await fetch(`/api/categories/${categoryId}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          `http://localhost:3000/api/categories/${categoryId}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         if (!response.ok) {
           throw new Error("Network response was not ok");
         } else {

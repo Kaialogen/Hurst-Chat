@@ -25,11 +25,11 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
 
         row.innerHTML = `
-        <td class="leftpart">
-          <h3><a href="/topics.html?id=${category.id}">${category.name}</a></h3>
+        <td class="w-2/3">
+          <h3><a class="text-black underline hover:text-gray-800" href="/src/topics.html?id=${category.id}">${category.name}</a></h3>
           <p>${category.description}</p>
         </td>
-        <td class="rightpart">${topicContent}</td>
+        <td class="w-1/3">${topicContent}</td>
         `;
         tbody.appendChild(row);
       });

@@ -5,12 +5,10 @@
     <meta charset="UTF-8" />
     <title>Hurst Chat</title>
     <link rel="icon" href="/logo.png" type="image/x-icon" />
-    <link href="./css/main.css" rel="stylesheet" type="text/css" />
     <link href="../style.css" rel="stylesheet" />
-    <link href="./css/tables.css" rel="stylesheet" type="text/css" />
   </head>
 
-  <body>
+  <body class="bg-[#f5f5ff] text-center">
     <nav
       class="bg-gray-900 text-white px-6 py-4 flex justify-between items-center shadow"
     >
@@ -43,30 +41,85 @@
       </div>
     </nav>
 
-    <img src="/logo.png" alt="Main Logo" />
-    <div id="wrapper">
-      <div id="content">
-        <center><h3>Sign up</h3></center>
-        <ul id="list">
-          <form
-            name="Signup"
-            method="post"
-            onsubmit="return signup(event)"
-            required
-          >
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username" required />
-            <label for="email">Email:</label>
-            <input id="email" type="email" name="email" required />
-            <label for="password1">Password:</label>
-            <input id="password1" type="password" name="password1" required />
-            <label for="password2">Please enter password again:</label>
-            <input id="passwoes2" type="password" name="password2" required />
-            <input type="submit" value="submit" />
-          </form>
-        </ul>
+    <img src="/logo.png" alt="Main Logo" class="mx-auto block my-8" />
+    <div id="wrapper" class="flex flex-col items-center">
+      <div
+        id="content"
+        class="bg-[#2215f7] rounded-[20px] font-sans px-[30px] py-[20px] text-left w-[900px] float-left shadow-lg"
+      >
+        <h2 class="text-center text-white text-2xl p-6">Sign up</h2>
+        <form
+          name="Signup"
+          method="post"
+          onsubmit="return signup(event)"
+          class="flex flex-col gap-6 items-center w-full max-w-md mx-auto bg-white p-8 rounded-lg shadow"
+          required
+        >
+          <div class="w-full">
+            <label for="username" class="block text-gray-700 font-semibold mb-2"
+              >Username:</label
+            >
+            <input
+              type="text"
+              name="username"
+              id="username"
+              required
+              class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
-        <center><a href="terms.html">Terms and Conditions</a></center>
+          <div class="w-full">
+            <label for="email" class="block text-gray-700 font-semibold mb-2"
+              >Email:</label
+            >
+            <input
+              id="email"
+              type="email"
+              name="email"
+              required
+              class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <div class="w-full">
+            <label
+              for="password1"
+              class="block text-gray-700 font-semibold mb-2"
+              >Password:</label
+            >
+            <input
+              id="password1"
+              type="password"
+              name="password1"
+              required
+              class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <div class="w-full">
+            <label
+              for="password2"
+              class="block text-gray-700 font-semibold mb-2"
+              >Please enter password again:</label
+            >
+            <input
+              id="password2"
+              type="password"
+              name="password2"
+              required
+              class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <input
+            type="submit"
+            value="Submit"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded transition"
+          />
+          <a href="terms.html" class="text-center text-blue-600 p-6 w-full"
+            >Terms and Conditions</a
+          >
+        </form>
       </div>
     </div>
 

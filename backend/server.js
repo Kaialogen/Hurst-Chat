@@ -3,17 +3,9 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
-const mysql = require("mysql2/promise");
-const graphqlHandler = require("./graphql");
 const categories = require("../db/categories");
 const topics = require("../db/topics");
-
-const dbConfig = {
-  host: "db",
-  user: "user",
-  password: "userpassword",
-  database: "mydatabase",
-};
+const pool = require("./db");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -31,9 +23,6 @@ app.use(
 // Secret key for JWT
 const SECRET_KEY = process.env.JWT_SECRET || "your-secret-key";
 
-// Posts API
-app.all("/graphql", graphqlHandler);
-
 // Login Route
 app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
@@ -43,28 +32,27 @@ app.post("/api/login", async (req, res) => {
   }
 
   try {
-    const connection = await mysql.createConnection(dbConfig);
-
-    // Fetch credentials from database and Check credentials
-    const [rows] = await connection.execute(
-      "SELECT user_name, user_pass FROM users WHERE user_name = ?",
+    const { rows } = await pool.query(
+      "SELECT user_name, user_pass FROM users WHERE user_name = $1",
       [username],
     );
 
+    // Fetch credentials from database and Check credentials
     if (rows.length === 0) {
       return res
         .status(401)
         .json({ message: "Invalid credentials - User does not exist" });
     }
 
-    const user = rows[0];
-
     const hashedInputPassword = crypto
       .createHash("sha1")
       .update(password)
       .digest("hex");
 
-    if (hashedInputPassword !== user.user_pass) {
+    const user = rows[0];
+    const storedPassword = user.user_pass;
+
+    if (hashedInputPassword !== storedPassword) {
       return res
         .status(401)
         .json({ message: "Invalid credentials - Incorrect password" });
@@ -81,7 +69,7 @@ app.post("/api/login", async (req, res) => {
       maxAge: 3600000, // 1 hour
     });
 
-    res.json({ message: "Login successful!" });
+    res.status(200).json("Login successful!");
   } catch (error) {
     console.error("Login error:", error);
     res.status(500).json({ message: "Server error" });
@@ -97,15 +85,13 @@ app.post("/api/signup", async (req, res) => {
   }
 
   try {
-    const connection = await mysql.createConnection(dbConfig);
-
     // Check if username or email already exists
-    const [existingUsers] = await connection.execute(
-      "SELECT user_name, user_email FROM users WHERE user_name = ? OR user_email = ?",
+    const { existingUsers } = await pool.query(
+      "SELECT user_name, user_email FROM users WHERE user_name = $1 OR user_email = $2",
       [username, email],
     );
 
-    if (existingUsers.length > 0) {
+    if (existingUsers) {
       return res
         .status(409)
         .json({ message: "Username or email already exists" });
@@ -118,8 +104,8 @@ app.post("/api/signup", async (req, res) => {
       .digest("hex");
 
     // Insert new user into database
-    await connection.execute(
-      "INSERT INTO users (user_name, user_pass, user_email, user_date, user_level) VALUES (?, ?, ?, NOW(), 0)",
+    await pool.query(
+      "INSERT INTO users (user_name, user_pass, user_email, user_date, user_level) VALUES ($1, $2, $3, NOW(), 0)",
       [username, hashedPassword, email],
     );
 
@@ -139,6 +125,7 @@ app.get("/api/profile", (req, res) => {
     const decoded = jwt.verify(token, SECRET_KEY);
     res.json({ username: decoded.username });
   } catch (err) {
+    console.error("Token verification error:", err);
     res.status(401).json({ message: "Invalid or expired token" });
   }
 });

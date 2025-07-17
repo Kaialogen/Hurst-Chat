@@ -1,0 +1,27 @@
+services:
+  server:
+    build:
+      context: .
+    environment:
+      NODE_ENV: production
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+  
+  database: 
+    image: postgres:17-alpine
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: Hurst_Chat
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/Hurst_Chat.sql:/docker-entrypoint-initdb.d/Hurst_Chat.sql
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:

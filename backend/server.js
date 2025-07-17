@@ -45,28 +45,28 @@ app.post("/api/login", async (req, res) => {
   }
 
   try {
-    const connection = await mysql.createConnection(dbConfig);
-
-    // Fetch credentials from database and Check credentials
-    const [rows] = await connection.execute(
-      "SELECT user_name, user_pass FROM users WHERE user_name = ?",
+    const { rows } = await pool.query(
+      "SELECT user_name, user_pass FROM users WHERE user_name = $1",
       [username],
     );
+    console.log("Rows fetched:", rows);
 
+    // Fetch credentials from database and Check credentials
     if (rows.length === 0) {
       return res
         .status(401)
         .json({ message: "Invalid credentials - User does not exist" });
     }
 
-    const user = rows[0];
-
     const hashedInputPassword = crypto
       .createHash("sha1")
       .update(password)
       .digest("hex");
 
-    if (hashedInputPassword !== user.user_pass) {
+    const user = rows[0];
+    const storedPassword = user.user_pass.toString("hex");
+
+    if (hashedInputPassword !== storedPassword) {
       return res
         .status(401)
         .json({ message: "Invalid credentials - Incorrect password" });

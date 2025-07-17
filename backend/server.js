@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
-const graphqlHandler = require("./graphql");
 const categories = require("../db/categories");
 const topics = require("../db/topics");
 const pool = require("./db");
@@ -23,9 +22,6 @@ app.use(
 
 // Secret key for JWT
 const SECRET_KEY = process.env.JWT_SECRET || "your-secret-key";
-
-// Posts API
-app.all("/graphql", graphqlHandler);
 
 // Login Route
 app.post("/api/login", async (req, res) => {

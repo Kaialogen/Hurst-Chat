@@ -9,35 +9,6 @@ services:
         condition: service_healthy
     ports:
       - "3000:3000"
-
-  db:
-    image: mysql:8.0
-    container_name: mysql-db
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: mydatabase
-      MYSQL_USER: user
-      MYSQL_PASSWORD: userpassword
-    volumes:
-      - db_data:/var/lib/mysql
-      - ./db/Hurst_Chat.sql:/docker-entrypoint-initdb.d/Hurst_Chat.sql
-    ports:
-      - "3306:3306"
-    healthcheck:
-      test:
-        [
-          "CMD",
-          "mysqladmin",
-          "ping",
-          "-h",
-          "localhost",
-          "-u",
-          "root",
-          "-prootpassword",
-        ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
   
   database: 
     image: postgres:17-alpine
@@ -48,10 +19,9 @@ services:
       POSTGRES_DB: Hurst_Chat
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./db/Hurst_Chat.sql:/docker-entrypoint-initdb.d/Hurst_Chat.sql
     ports:
       - "5432:5432"
 
 volumes:
-  db_data:
   postgres_data:

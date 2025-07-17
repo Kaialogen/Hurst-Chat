@@ -3,19 +3,10 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
-const mysql = require("mysql2/promise");
 const graphqlHandler = require("./graphql");
 const categories = require("../db/categories");
 const topics = require("../db/topics");
 const pool = require("./db");
-
-const dbConfig = {
-  host: "localhost",
-  user: "user",
-  password: "userpassword",
-  database: "mydatabase",
-  port: 3306, // Default MySQL port
-};
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -49,7 +40,6 @@ app.post("/api/login", async (req, res) => {
       "SELECT user_name, user_pass FROM users WHERE user_name = $1",
       [username],
     );
-    console.log("Rows fetched:", rows);
 
     // Fetch credentials from database and Check credentials
     if (rows.length === 0) {
@@ -64,7 +54,7 @@ app.post("/api/login", async (req, res) => {
       .digest("hex");
 
     const user = rows[0];
-    const storedPassword = user.user_pass.toString("hex");
+    const storedPassword = user.user_pass;
 
     if (hashedInputPassword !== storedPassword) {
       return res
@@ -99,15 +89,13 @@ app.post("/api/signup", async (req, res) => {
   }
 
   try {
-    const connection = await mysql.createConnection(dbConfig);
-
     // Check if username or email already exists
-    const [existingUsers] = await connection.execute(
-      "SELECT user_name, user_email FROM users WHERE user_name = ? OR user_email = ?",
+    const { existingUsers } = await pool.query(
+      "SELECT user_name, user_email FROM users WHERE user_name = $1 OR user_email = $2",
       [username, email],
     );
 
-    if (existingUsers.length > 0) {
+    if (existingUsers) {
       return res
         .status(409)
         .json({ message: "Username or email already exists" });
@@ -120,8 +108,8 @@ app.post("/api/signup", async (req, res) => {
       .digest("hex");
 
     // Insert new user into database
-    await connection.execute(
-      "INSERT INTO users (user_name, user_pass, user_email, user_date, user_level) VALUES (?, ?, ?, NOW(), 0)",
+    await pool.query(
+      "INSERT INTO users (user_name, user_pass, user_email, user_date, user_level) VALUES ($1, $2, $3, NOW(), 0)",
       [username, hashedPassword, email],
     );
 

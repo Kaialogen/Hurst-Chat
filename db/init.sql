@@ -64,16 +64,8 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   user_id SERIAL PRIMARY KEY,
   user_name VARCHAR(30) NOT NULL,
-  user_pass BYTEA NOT NULL,
+  user_pass VARCHAR(100) NOT NULL,
   user_email VARCHAR(255) NOT NULL,
   user_date TIMESTAMP NOT NULL,
   user_level INTEGER NOT NULL
 );
-
-INSERT INTO users (user_id, user_name, user_pass, user_email, user_date, user_level) VALUES
-(1, 'admin', digest('adminpass', 'sha1'), 'admin@socialmedia.com', '2023-09-07 10:00:00', 1),
-(2, 'techguru', digest('password123', 'sha1'), 'techguru@socialmedia.com', '2023-09-10 12:00:00', 0),
-(3, 'fitnesslover', digest('fitlife2023', 'sha1'), 'fitnesslover@socialmedia.com', '2023-09-12 14:00:00', 0),
-(4, 'gamer123', digest('gamerpass456', 'sha1'), 'gamer123@socialmedia.com', '2023-09-14 16:00:00', 0),
-(5, 'studentcoder', digest('codeislife789', 'sha1'), 'studentcoder@socialmedia.com', '2023-09-16 18:00:00', 0),
-(6, 'traveller', digest('wanderlust987', 'sha1'), 'traveller@socialmedia.com', '2023-09-18 20:00:00', 0);

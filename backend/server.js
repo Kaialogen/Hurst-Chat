@@ -7,12 +7,14 @@ const mysql = require("mysql2/promise");
 const graphqlHandler = require("./graphql");
 const categories = require("../db/categories");
 const topics = require("../db/topics");
+const pool = require("./db");
 
 const dbConfig = {
-  host: "db",
+  host: "localhost",
   user: "user",
   password: "userpassword",
   database: "mydatabase",
+  port: 3306, // Default MySQL port
 };
 
 const app = express();
@@ -81,7 +83,7 @@ app.post("/api/login", async (req, res) => {
       maxAge: 3600000, // 1 hour
     });
 
-    res.json({ message: "Login successful!" });
+    res.status(200).json("Login successful!");
   } catch (error) {
     console.error("Login error:", error);
     res.status(500).json({ message: "Server error" });
@@ -139,6 +141,7 @@ app.get("/api/profile", (req, res) => {
     const decoded = jwt.verify(token, SECRET_KEY);
     res.json({ username: decoded.username });
   } catch (err) {
+    console.error("Token verification error:", err);
     res.status(401).json({ message: "Invalid or expired token" });
   }
 });

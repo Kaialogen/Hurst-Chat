@@ -6,7 +6,7 @@ async function login(event) {
   const password = formData.get("password");
 
   try {
-    const response = await fetch("/api/login", {
+    const response = await fetch("http://localhost:3000/api/login", {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },

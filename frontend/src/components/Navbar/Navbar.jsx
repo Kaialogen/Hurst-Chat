@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router";
 
 export default function Navbar() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -36,12 +37,12 @@ export default function Navbar() {
   return (
     <nav className="bg-gray-900 text-white px-6 py-4 flex justify-between items-center shadow">
       <div className="flex space-x-6 items-center">
-        <a
-          href="index.html"
+        <Link
+          to="/"
           className="font-bold text-lg hover:text-blue-400 transition"
         >
           Hurst Chat
-        </a>
+        </Link>
         <a
           href="/src/create_topic.hml"
           className="hover:text-blue-400 transition"
@@ -69,12 +70,12 @@ export default function Navbar() {
           </>
         ) : (
           <>
-            <a
-              href="/src/signin.html"
+            <Link
+              to="/login"
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition"
             >
               Login
-            </a>
+            </Link>
             <a
               href="/src/signup.html"
               className="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded transition"

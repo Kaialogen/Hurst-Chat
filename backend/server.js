@@ -173,18 +173,20 @@ app.post("/api/categories", async (req, res) => {
   res.status(201).json({ message: "Category added successfully", categories });
 });
 
-// Get a specific topic by category ID
-app.get("/api/categories/:id", (req, res) => {
-  const categoryId = parseInt(req.params.id, 10);
-  const category = categories.find((cat) => cat.id === categoryId);
+// Get a specific topic by category name
+app.get("/api/categories/:categoryName", (req, res) => {
+  const categoryName = req.params.categoryName;
+  const category = categories.find((cat) => cat.name === categoryName);
 
   if (!category) {
     return res.status(404).json({ message: "Category not found" });
   }
 
-  // Add topics to the category
-  category.topics = topics.filter((topic) => topic.category_id === categoryId);
-  res.json(category);
+  const topicsForCategory = topics.filter(
+    (topic) => topic.category_id === category.id,
+  );
+
+  res.json(topicsForCategory);
 });
 
 // Start the server

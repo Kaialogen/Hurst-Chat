@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 
 export default function Categories() {
   const [categories, setCategories] = useState([]);
@@ -60,12 +61,12 @@ export default function Categories() {
                 <tr key={category.id}>
                   <td className="p-2 bg-[#f5f5ff] border border-black align-top w-2/3">
                     <h3>
-                      <a
+                      <Link
+                        to={`/categories/${category.name}`}
                         className="text-black underline hover:text-gray-800"
-                        href={`/src/topics.html?id=${category.id}`}
                       >
                         {category.name}
-                      </a>
+                      </Link>
                     </h3>
                     <p>{category.description}</p>
                   </td>

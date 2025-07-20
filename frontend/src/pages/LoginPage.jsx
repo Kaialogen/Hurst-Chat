@@ -4,10 +4,10 @@ import LoginForm from "../components/LoginForm/LoginForm";
 
 export default function LoginPage() {
   return (
-    <body className="bg-[#f5f5ff] text-center">
+    <div className="bg-[#f5f5ff] text-center">
       <Navbar />
       <LogoBanner />
       <LoginForm />
-    </body>
+    </div>
   );
 }

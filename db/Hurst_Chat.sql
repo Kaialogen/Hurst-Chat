@@ -69,6 +69,3 @@ CREATE TABLE users (
   user_date TIMESTAMP NOT NULL,
   user_level INTEGER NOT NULL
 );
-
-INSERT INTO users (user_id, user_name, user_pass, user_email, user_date, user_level) VALUES
-(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@admin.com', '2023-09-15 09:00:00', 1);

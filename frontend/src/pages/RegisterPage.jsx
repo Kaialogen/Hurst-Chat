@@ -1,13 +1,13 @@
 import Navbar from "../components/Navbar/Navbar";
 import LogoBanner from "../components/LogoBanner/LogoBanner";
-import Categories from "../components/Categories/Categories";
+import RegisterForm from "../components/RegisterForm/RegisterForm";
 
-export default function HomePage() {
+export default function RegisterPage() {
   return (
     <div className="bg-[#f5f5ff] text-center">
       <Navbar />
       <LogoBanner />
-      <Categories />
+      <RegisterForm />
     </div>
   );
 }

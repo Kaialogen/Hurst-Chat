@@ -44,12 +44,6 @@ export default function Navbar() {
           Hurst Chat
         </Link>
         <a
-          href="/src/create_topic.hml"
-          className="hover:text-blue-400 transition"
-        >
-          Create topic
-        </a>
-        <a
           href="/src/create_category.html"
           className="hover:text-blue-400 transition"
         >
@@ -76,12 +70,12 @@ export default function Navbar() {
             >
               Login
             </Link>
-            <a
-              href="/src/signup.html"
+            <Link
+              to="/register"
               className="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded transition"
             >
               Register
-            </a>
+            </Link>
           </>
         )}
       </div>

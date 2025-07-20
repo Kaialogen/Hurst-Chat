@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>Hurst Chat</title>
+    <link rel="icon" href="/logo.png" type="image/x-icon" />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+
+  <body class="bg-[#f5f5ff] text-center">
+    <nav
+      class="bg-gray-900 text-white px-6 py-4 flex justify-between items-center shadow"
+    >
+      <div class="flex space-x-6 items-center">
+        <a
+          href="index.html"
+          class="font-bold text-lg hover:text-blue-400 transition"
+          >Hurst Chat</a
+        >
+        <a href="/src/create_topic.hml" class="hover:text-blue-400 transition"
+          >Create topic</a
+        >
+        <a
+          href="/src/create_category.html"
+          class="hover:text-blue-400 transition"
+          >Create category</a
+        >
+      </div>
+      <div class="flex space-x-4 items-center" id="userbar">
+        <a
+          href="/src/signin.html"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition"
+          >Login</a
+        >
+        <a
+          href="/src/signup.html"
+          class="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded transition"
+          >Register</a
+        >
+      </div>
+    </nav>
+
+    <img src="/logo.png" alt="Main Logo" class="mx-auto block my-8" />
+    <div id="wrapper" class="flex flex-col items-center">
+      <div
+        id="content"
+        class="bg-[#2215f7] rounded-[20px] font-sans px-[30px] py-[20px] text-left w-[900px] float-left shadow-lg"
+      >
+        <h2 id="category_name" class="text-center text-white text-2xl p-6">
+          Home
+        </h2>
+        <table class="border border-black border-collapse w-full bg-[#f5f5ff]">
+          <thead>
+            <tr>
+              <th class="bg-[#ee6cfa] text-[#010110] text-center p-2 w-[7/10]">
+                Category
+              </th>
+              <th class="bg-[#ee6cfa] text-[#010110] text-center p-2 w-[3/10]">
+                Recent Posts
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Example row -->
+            <tr>
+              <td class="p-2 bg-[#f5f5ff] border border-black align-top">
+                <a
+                  href="#"
+                  class="text-[#010110] hover:text-[#373737] hover:no-underline"
+                  >Example Category</a
+                >
+              </td>
+              <td
+                class="p-2 bg-[#f5f5ff] border border-black text-center align-top"
+              >
+                <a
+                  href="#"
+                  class="text-[#010110] hover:text-[#373737] hover:no-underline"
+                  >Example Topic</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="./src/js/ProfileValidation.js"></script>
+    <script src="./src/js/FetchCategories.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        getProfile(); // Run profile validation when page loads
+      });
+    </script>
+  </body>
+</html>

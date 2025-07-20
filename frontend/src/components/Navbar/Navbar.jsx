@@ -43,12 +43,9 @@ export default function Navbar() {
         >
           Hurst Chat
         </Link>
-        <a
-          href="/src/create_category.html"
-          className="hover:text-blue-400 transition"
-        >
+        <Link to="/createCategory" className="hover:text-blue-400 transition">
           Create category
-        </a>
+        </Link>
       </div>
       <div className="flex space-x-4 items-center" id="userbar">
         {loggedIn ? (

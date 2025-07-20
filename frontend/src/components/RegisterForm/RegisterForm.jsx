@@ -117,7 +117,7 @@ export default function RegisterForm() {
           >
             Submit
           </button>
-          <Link to="terms" className="text-center text-blue-600 p-6 w-full">
+          <Link to="/terms" className="text-center text-blue-600 p-6 w-full">
             Terms and Conditions
           </Link>
         </form>

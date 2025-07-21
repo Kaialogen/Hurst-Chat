@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 
-export default function Categories() {
+export default function Homefeed() {
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState(null);
 
@@ -33,13 +33,13 @@ export default function Categories() {
   };
 
   return (
-    <div id="wrapper" className="flex flex-col items-center">
+    <div id="wrapper" className="flex justify-center p-2 col-span-2">
       <div
         id="content"
-        className="bg-[#2215f7] rounded-[20px] font-sans px-[30px] py-[20px] text-left w-[900px] float-left shadow-lg"
+        className="bg-[#2215f7] rounded-[20px] font-sans px-[30px] py-[20px] text-left w-[900px] shadow-lg"
       >
         <h2 id="category_name" className="text-center text-white text-2xl p-6">
-          Home
+          Home Feed
         </h2>
 
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}

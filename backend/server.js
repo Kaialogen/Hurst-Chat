@@ -170,12 +170,10 @@ app.post("/api/categories", async (req, res) => {
       "INSERT INTO categories (name, description) VALUES ($1, $2) RETURNING *",
       [name, description],
     );
-    res
-      .status(201)
-      .json({
-        message: "Category added successfully",
-        category: result.rows[0],
-      });
+    res.status(201).json({
+      message: "Category added successfully",
+      category: result.rows[0],
+    });
   } catch (error) {
     console.error("Error adding category:", error);
     res.status(500).json({ message: "Server error" });
@@ -201,6 +199,21 @@ app.get("/api/categories/:categoryName", async (req, res) => {
     res.status(200).json(categories);
   } catch (error) {
     console.error("Error fetching category:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+// GET /api/categories/:categoryId/recent
+app.get("/api/categories/:categoryId/recent", async (req, res) => {
+  const { categoryId } = req.params;
+  try {
+    const recentPost = await pool.query(
+      `SELECT * FROM topics WHERE category_id = $1 ORDER BY created_at DESC LIMIT 1`,
+      [categoryId],
+    );
+    res.json(recentPost.rows[0] || null);
+  } catch (error) {
+    console.error("Error fetching recent post:", error);
     res.status(500).json({ message: "Server error" });
   }
 });

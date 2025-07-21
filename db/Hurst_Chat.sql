@@ -21,22 +21,6 @@ INSERT INTO categories (id, name, description) VALUES
 
 SELECT setval('categories_id_seq', (SELECT MAX(id) FROM categories));
 
-DROP TABLE IF EXISTS posts;
-CREATE TABLE posts (
-  post_id SERIAL PRIMARY KEY,
-  post_content VARCHAR(255) NOT NULL,
-  post_date TIMESTAMP NOT NULL,
-  post_topic INTEGER NOT NULL,
-  post_by INTEGER NOT NULL
-);
-
-INSERT INTO posts (post_id, post_content, post_date, post_topic, post_by) VALUES
-(1, 'I love discussing the latest tech trends!', '2023-09-17 12:33:08', 1, 2),
-(2, 'What are your tips for staying fit during winter?', '2023-09-18 14:50:30', 2, 3),
-(3, 'Has anyone tried the new Zelda game?', '2023-09-19 10:45:22', 3, 4),
-(4, 'I just started learning Python! Any resources?', '2023-09-20 16:25:11', 4, 5),
-(5, 'Check out my travel blog for more!', '2023-09-21 18:33:44', 5, 6);
-
 DROP TABLE IF EXISTS replies;
 CREATE TABLE replies (
   reply_id SERIAL PRIMARY KEY,
@@ -50,22 +34,23 @@ DROP TABLE IF EXISTS topics;
 CREATE TABLE topics (
   topic_id SERIAL PRIMARY KEY,
   category_id INTEGER NOT NULL,
-  topic_content VARCHAR(255) NOT NULL,
+  topic_title VARCHAR(255) NOT NULL,
+  topic_body TEXT NOT NULL,
   created_at TIMESTAMP NOT NULL,
   topic_author INTEGER NOT NULL
 );
 
-INSERT INTO topics (topic_id, category_id, topic_content, created_at, topic_author) VALUES
-(1, 1, 'Latest in Tech News', '2023-09-15 10:20:10', 2),
-(2, 2, 'Healthy Habits for a Balanced Life', '2023-09-16 11:25:50', 3),
-(3, 3, 'Best Games of 2023', '2023-09-17 14:45:00', 4),
-(4, 4, 'Learning Programming', '2023-09-18 15:30:00', 5),
-(5, 5, 'Travel Destinations for 2024', '2023-09-19 16:00:00', 6),
-(6, 1, 'Understanding Quantum Computing', '2023-09-20 17:15:00', 2),
-(7, 2, 'Mental Health Awareness', '2023-09-21 18:45:00', 3),
-(8, 3, 'Upcoming Game Releases', '2023-09-22 19:30:00', 4),
-(9, 4, 'Online Learning Platforms', '2023-09-23 20:00:00', 5),
-(10, 5, 'Culinary Adventures Around the World', '2023-09-24 21:15:00', 6);
+INSERT INTO topics (topic_id, category_id, topic_title, topic_body, created_at, topic_author) VALUES
+(1, 1, 'Latest in Tech News', 'Discuss the most recent advancements in AI, blockchain, and consumer electronics. Share your thoughts on the latest product launches and tech trends.', '2023-09-15 10:20:10', 2),
+(2, 2, 'Healthy Habits for a Balanced Life', 'Share your daily routines, nutrition tips, and exercise plans that help you maintain a healthy lifestyle. What habits have made the biggest difference for you?', '2023-09-16 11:25:50', 3),
+(3, 3, 'Best Games of 2023', 'Let''s talk about the top video games released this year. Which titles stood out and why? Share your reviews and recommendations.', '2023-09-17 14:45:00', 4),
+(4, 4, 'Learning Programming', 'Discuss the best resources, courses, and strategies for learning programming. Share your experiences as a beginner or tips for those just starting out.', '2023-09-18 15:30:00', 5),
+(5, 5, 'Travel Destinations for 2024', 'What are your dream travel destinations for the upcoming year? Share itineraries, travel hacks, and must-see places around the world.', '2023-09-19 16:00:00', 6),
+(6, 1, 'Understanding Quantum Computing', 'Explore the basics of quantum computing, its potential applications, and how it differs from classical computing. Ask questions or share resources.', '2023-09-20 17:15:00', 2),
+(7, 2, 'Mental Health Awareness', 'Discuss strategies for maintaining mental health, breaking the stigma, and supporting others. Share helpful resources and personal stories.', '2023-09-21 18:45:00', 3),
+(8, 3, 'Upcoming Game Releases', 'Stay updated on the most anticipated game releases. Share trailers, release dates, and what you''re most excited to play.', '2023-09-22 19:30:00', 4),
+(9, 4, 'Online Learning Platforms', 'Review and compare popular online learning platforms. Which ones offer the best courses, and what has your experience been like?', '2023-09-23 20:00:00', 5),
+(10, 5, 'Culinary Adventures Around the World', 'Share your favorite international dishes, recipes, and food experiences. Discuss unique culinary traditions and cooking tips.', '2023-09-24 21:15:00', 6);
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (

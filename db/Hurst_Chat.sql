@@ -19,6 +19,8 @@ INSERT INTO categories (id, name, description) VALUES
 (4, 'Education', 'Resources and discussions on learning and education'),
 (5, 'Lifestyle', 'Share insights on fashion, travel, food, and more');
 
+SELECT setval('categories_id_seq', (SELECT MAX(id) FROM categories));
+
 DROP TABLE IF EXISTS posts;
 CREATE TABLE posts (
   post_id SERIAL PRIMARY KEY,
@@ -58,7 +60,12 @@ INSERT INTO topics (topic_id, category_id, topic_content, created_at, topic_auth
 (2, 2, 'Healthy Habits for a Balanced Life', '2023-09-16 11:25:50', 3),
 (3, 3, 'Best Games of 2023', '2023-09-17 14:45:00', 4),
 (4, 4, 'Learning Programming', '2023-09-18 15:30:00', 5),
-(5, 5, 'Travel Destinations for 2024', '2023-09-19 16:00:00', 6);
+(5, 5, 'Travel Destinations for 2024', '2023-09-19 16:00:00', 6),
+(6, 1, 'Understanding Quantum Computing', '2023-09-20 17:15:00', 2),
+(7, 2, 'Mental Health Awareness', '2023-09-21 18:45:00', 3),
+(8, 3, 'Upcoming Game Releases', '2023-09-22 19:30:00', 4),
+(9, 4, 'Online Learning Platforms', '2023-09-23 20:00:00', 5),
+(10, 5, 'Culinary Adventures Around the World', '2023-09-24 21:15:00', 6);
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (

@@ -3,8 +3,6 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
-const categories = require("../db/categories");
-const topics = require("../db/topics");
 const pool = require("./db");
 
 const app = express();
@@ -139,7 +137,11 @@ app.post("/api/logout", (req, res) => {
   res.json({ message: "Logged out" });
 });
 
-app.get("/api/categories", (req, res) => {
+app.get("/api/categories", async (req, res) => {
+  // Fetch categories from the database
+  const { rows: categories } = await pool.query("SELECT * FROM categories");
+
+  // If no categories found, return 404
   if (!categories || categories.length === 0) {
     return res.status(404).json({ message: "No categories found" });
   }
@@ -148,8 +150,6 @@ app.get("/api/categories", (req, res) => {
 
 // Add a new category
 app.post("/api/categories", async (req, res) => {
-  // Data looks like this:
-  // [ { "name": "New Category", "description": "Category description" } ]
   let name, description;
   if (Array.isArray(req.body) && req.body.length > 0) {
     name = req.body[0].name;
@@ -164,29 +164,45 @@ app.post("/api/categories", async (req, res) => {
       .status(400)
       .json({ message: "Name and description are required" });
   }
-  categories.push({
-    id: categories.length + 1,
-    name,
-    description,
-    topics: [],
-  });
-  res.status(201).json({ message: "Category added successfully", categories });
+
+  try {
+    const result = await pool.query(
+      "INSERT INTO categories (name, description) VALUES ($1, $2) RETURNING *",
+      [name, description],
+    );
+    res
+      .status(201)
+      .json({
+        message: "Category added successfully",
+        category: result.rows[0],
+      });
+  } catch (error) {
+    console.error("Error adding category:", error);
+    res.status(500).json({ message: "Server error" });
+  }
 });
 
 // Get a specific topic by category name
-app.get("/api/categories/:categoryName", (req, res) => {
+app.get("/api/categories/:categoryName", async (req, res) => {
+  // Get the category name from the request parameters
   const categoryName = req.params.categoryName;
-  const category = categories.find((cat) => cat.name === categoryName);
+  try {
+    const { rows: categories } = await pool.query(
+      `SELECT t.* FROM topics t
+       INNER JOIN categories c ON t.category_id = c.id
+       WHERE c.name = $1`,
+      [categoryName],
+    );
 
-  if (!category) {
-    return res.status(404).json({ message: "Category not found" });
+    if (categories.length === 0) {
+      return res.status(404).json({ message: "Category not found" });
+    }
+
+    res.status(200).json(categories);
+  } catch (error) {
+    console.error("Error fetching category:", error);
+    res.status(500).json({ message: "Server error" });
   }
-
-  const topicsForCategory = topics.filter(
-    (topic) => topic.category_id === category.id,
-  );
-
-  res.json(topicsForCategory);
 });
 
 // Start the server

@@ -5,7 +5,7 @@ import LogoBanner from "../components/LogoBanner/LogoBanner";
 
 export default function CategoriesPage() {
   const { categoryName } = useParams();
-  const [posts, setPosts] = useState({});
+  const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {

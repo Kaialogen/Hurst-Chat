@@ -43,13 +43,16 @@ export default function Navbar() {
         >
           Hurst Chat
         </Link>
-        <Link to="/createCategory" className="hover:text-blue-400 transition">
-          Create category
-        </Link>
       </div>
       <div className="flex space-x-4 items-center" id="userbar">
         {loggedIn ? (
           <>
+            <Link
+              to="/createCategory"
+              className="hover:text-blue-400 transition"
+            >
+              Create
+            </Link>
             <a href="#">{username}</a>
             <button
               href="#"
@@ -61,6 +64,12 @@ export default function Navbar() {
           </>
         ) : (
           <>
+            <Link
+              to="/createCategory"
+              className="hover:text-blue-400 transition"
+            >
+              Create
+            </Link>
             <Link
               to="/login"
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition"

@@ -5,7 +5,7 @@ import LogoBanner from "../components/LogoBanner/LogoBanner";
 
 export default function CategoriesPage() {
   const { categoryName } = useParams();
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState({});
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -65,11 +65,11 @@ export default function CategoriesPage() {
             <tbody>
               {posts.length > 0 ? (
                 posts.map((post) => (
-                  <tr key={post.id}>
+                  <tr key={post.topic_id}>
                     <td className="leftpart">
                       <h3 id="topic_name">
                         <a
-                          href={`/src/topics.html?id=${post.id}`}
+                          href={`/src/topics.html?id=${post.topic_id}`}
                           className="text-black underline hover:text-gray-800"
                         >
                           {post.topic_content}

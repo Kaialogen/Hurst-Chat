@@ -1,6 +1,6 @@
 # Hurst Chat A-Level Project
 
-This is a chat application designed for A-Level Computer Science. It allows users to create accounts, log in, and send messages to each other. The project is built using React, Node, Express and PostgreSQL, with a focus on security and user experience.
+This is a chat application designed for my A-Level Computer Science NEA. It allows users to create accounts, log in, and send messages to each other. The project is built using React, Node, Express and PostgreSQL, with a focus on security and user experience.
 
 # Features
 

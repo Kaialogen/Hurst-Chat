@@ -10,22 +10,31 @@ This is a chat application designed for my A-Level Computer Science NEA. It allo
 
 # Tech Stack
 
-- Database: PostgreSQL
-- Frontend: React, Tailwind CSS
-- Backend: Node.js, Express.js
-- Authentication: JWT (JSON Web Tokens)
-- Misc: Docker
-- Version Control: Git
+- React
+- Tailwind CSS v4
+- Vite
+- TypeScript
+- Git
 
 # Getting Started
 
-- To deploy the docker container, run the following command:
+- To install the packages:
 
 ```bash
-docker-compose up --build
+$ npm install
 ```
 
-- To access the website, open your web browser and go to http://localhost:9000
+- To run the vite dev server run:
+
+```bash
+$ npm run dev
+```
+
+- To run the build:
+
+```bash
+$ npm run build
+```
 
 (This project is currently in maintainance and is not in a production ready state. It is a demo website for educational purposes only.)
 

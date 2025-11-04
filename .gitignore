@@ -12,8 +12,13 @@ dist
 dist-ssr
 *.local
 
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
 .DS_Store
-package-lock.json
-.dockerignore
-.vite
-.env
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

@@ -1,5 +1,5 @@
 import { Outlet} from "react-router";
-import Navbar from './components/Navbar/Navbar.jsx';
+import Navbar from './components/Navbar/Navbar.tsx';
 
 export default function MainLayout(props: {}) {
   return (

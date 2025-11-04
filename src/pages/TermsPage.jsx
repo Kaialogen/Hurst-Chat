@@ -1,10 +1,8 @@
-import Navbar from "../components/Navbar/Navbar";
 import LogoBanner from "../components/LogoBanner/LogoBanner";
 
 export default function TermsPage() {
   return (
     <div className="bg-[#f5f5ff] text-center">
-      <Navbar />
       <LogoBanner />
       <div id="wrapper" className="flex flex-col items-center">
         <div

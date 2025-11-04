@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import Navbar from "../components/Navbar/Navbar";
 import LogoBanner from "../components/LogoBanner/LogoBanner";
 
 export default function CategoriesPage() {
@@ -36,7 +35,6 @@ export default function CategoriesPage() {
   }, [categoryName]);
   return (
     <div className="bg-[#f5f5ff] text-center">
-      <Navbar />
       <LogoBanner />
       <div id="wrapper" className="flex flex-col items-center">
         <div

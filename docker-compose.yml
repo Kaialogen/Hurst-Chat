@@ -1,13 +1,31 @@
 services:
-  server:
+  frontend:
     build:
-      context: .
+      context: ./apps/frontend
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+
+  backend:
+    build:
+      context: ./apps/backend
     environment:
       NODE_ENV: production
+      PORT: 3000
+      CORS_ORIGIN: http://localhost:5173
+      POSTGRES_HOST: database
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: Hurst_Chat
+    depends_on:
+      database:
+        condition: service_healthy
     ports:
       - "3000:3000"
-  
-  database: 
+
+  database:
     image: postgres:17-alpine
     container_name: postgres-db
     environment:
@@ -17,6 +35,11 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./db/Hurst_Chat.sql:/docker-entrypoint-initdb.d/Hurst_Chat.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d Hurst_Chat"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
     ports:
       - "5432:5432"
 

@@ -9,7 +9,7 @@ export default function LoginForm() {
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault(); // Stop the form from reloading the page
     try {
-      const response = await fetch('http://localhost:3000/api/login', {
+      const response = await fetch('http://localhost:3000/api/auth/login', {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },

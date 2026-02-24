@@ -7,7 +7,7 @@ export default function CreateCategoryForm() {
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/api/categories', {
+      const response = await fetch('http://localhost:3000/api/category/newCategory', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, description }),

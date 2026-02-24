@@ -1,32 +1,18 @@
 {
-  "name": "frontend",
+  "name": "hurst-chat-monorepo",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "1.0.0",
+  "workspaces": [
+    "apps/frontend",
+    "apps/backend"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.30.1",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "@vitejs/plugin-react": "^4.6.0",
-    "eslint": "^9.30.1",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
-    "globals": "^16.3.0",
-    "vite": "^7.0.4",
-    "vite-plugin-checker": "^0.10.0"
-  },
-  "dependencies": {
-    "@tailwindcss/vite": "^4.1.11",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-icons": "^5.5.0",
-    "react-router": "^7.7.0",
-    "tailwindcss": "^4.1.11",
-    "typescript": "^5.8.3"
+    "dev:frontend": "npm run dev --workspace @hurst-chat/frontend",
+    "dev:backend": "npm run dev --workspace @hurst-chat/backend",
+    "build": "npm run build --workspaces --if-present",
+    "build:frontend": "npm run build --workspace @hurst-chat/frontend",
+    "build:backend": "npm run build --workspace @hurst-chat/backend",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
   }
 }

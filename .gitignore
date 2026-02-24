@@ -7,9 +7,19 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
+**/node_modules
+
+# Build artifacts
 dist
+**/dist
 dist-ssr
+.vite
+**/.vite
+
+# Local env files
+.env
 *.local
 
 # Editor directories and files
@@ -22,8 +32,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-package-lock.json
-.dockerignore
-.vite
-.env

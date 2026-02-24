@@ -23,7 +23,7 @@ exports.login = async (req: Request, res: Response) => {
     }
 
     const user = rows[0];
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    const passwordMatch = await bcrypt.compare(password, user.user_pass);
     if (!passwordMatch) return res.status(401).json({ message: 'Incorrect password' });
 
     // Generate JWT token
@@ -54,12 +54,12 @@ exports.register = async (req: Request, res: Response) => {
 
   try {
     // Check if username or email already exists
-    const { existingUsers } = await pool.query(
+    const { rows: existingUsers } = await pool.query(
       'SELECT user_name, user_email FROM users WHERE user_name = $1 OR user_email = $2',
       [username, email],
     );
 
-    if (existingUsers) {
+    if (existingUsers.length > 0) {
       return res.status(409).json({ message: 'Username or email already exists' });
     }
 

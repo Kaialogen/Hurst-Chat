@@ -25,11 +25,14 @@ export default function CategoriesPage() {
         setLoading(true);
         setError(null);
 
-        const response = await fetch(`http://localhost:3000/api/categories/${encodeURIComponent(categoryName)}`, {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
-          signal: controller.signal,
-        });
+        const response = await fetch(
+          `http://localhost:3000/api/category/categoryByName/${encodeURIComponent(categoryName)}`,
+          {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+            signal: controller.signal,
+          },
+        );
 
         if (!response.ok) {
           throw new Error(`Failed to fetch posts for ${categoryName}`);
